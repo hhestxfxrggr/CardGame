@@ -50,7 +50,7 @@ public class ActionSystem : Singleton<ActionSystem>
         reactions = action.PostReactions;
         PerformSubscribers(action, postSubs);
         yield return PerformReactions();
-        
+
         OnFlowFinished?.Invoke();
     }
 
@@ -69,7 +69,7 @@ public class ActionSystem : Singleton<ActionSystem>
     private void PerformSubscribers(GameAction action, Dictionary<Type, List<Action<GameAction>>> subs)
     {
         Type type = action.GetType();
-
+        
         if (subs.ContainsKey(type))
         {
             foreach (var sub in subs[type])
@@ -110,7 +110,7 @@ public class ActionSystem : Singleton<ActionSystem>
             performers.Remove(type);
     }
 
-    //action이 발생했을 때 추가로 반응하는 효과
+    //action이 발생했을 때 추가로 반응하는 효과를 저장
     public static void SubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction
     {
         Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
