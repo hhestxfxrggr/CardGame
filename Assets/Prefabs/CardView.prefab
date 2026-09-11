@@ -52,6 +52,9 @@ MonoBehaviour:
   playCost: {fileID: 982972768532540804}
   imageSR: {fileID: 5396786749549387965}
   wrapper: {fileID: 8616316025841423847}
+  dropLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!210 &30929092123838993
 SortingGroup:
   m_ObjectHideFlags: 0
