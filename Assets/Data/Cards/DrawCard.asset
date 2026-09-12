@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DrawCard
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Description>k__BackingField: Draw 2 cards
-  <PlayCost>k__BackingField: 2
+  <PlayMana>k__BackingField: 1
   <Image>k__BackingField: {fileID: 21300000, guid: 4fad2fe44db9dc741b7d32c1c0c1a17d, type: 3}
   <Effects>k__BackingField:
   - rid: 6393481169259200590

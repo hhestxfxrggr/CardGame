@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBall
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Description>k__BackingField: 'Deal 4 damage to an enemy '
-  <PlayCost>k__BackingField: 1
+  <PlayMana>k__BackingField: 2
   <Image>k__BackingField: {fileID: 21300000, guid: 298475d310cd62e438e70eaa998ee507, type: 3}
   <Effects>k__BackingField: []
   references:

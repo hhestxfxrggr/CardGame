@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardView
   title: {fileID: 6825025302968488729}
   description: {fileID: 8684263456403456726}
-  playCost: {fileID: 982972768532540804}
+  playMana: {fileID: 982972768532540804}
   imageSR: {fileID: 5396786749549387965}
   wrapper: {fileID: 8616316025841423847}
   dropLayer:
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3286963872874179493}
   - component: {fileID: 982972768532540804}
   m_Layer: 0
-  m_Name: PlayCost
+  m_Name: PlayMana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
