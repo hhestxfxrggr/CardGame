@@ -81,6 +81,12 @@ public class CardSystem : MonoBehaviour
         CardView cardView = handView.RemoveCard(playCardGA.Card);
 
         yield return DiscardCard(cardView);
+
+        foreach(var effect in playCardGA.Card.Effects)
+        {
+            PerformEffectGA performEffectGA = new PerformEffectGA(effect);
+            ActionSystem.Instance.AddReaction(performEffectGA);
+        }
     }
 
     private void EnemyTurnPreReaction(EnemyTurnGA enemyTurnGA)  
