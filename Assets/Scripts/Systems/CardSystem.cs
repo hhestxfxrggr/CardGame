@@ -82,6 +82,9 @@ public class CardSystem : MonoBehaviour
 
         yield return DiscardCard(cardView);
 
+        SpendManaGA spendManaGA = new SpendManaGA(playCardGA.Card.PlayMana);
+        ActionSystem.Instance.AddReaction(spendManaGA);
+
         foreach(var effect in playCardGA.Card.Effects)
         {
             PerformEffectGA performEffectGA = new PerformEffectGA(effect);

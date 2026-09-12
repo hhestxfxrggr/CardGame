@@ -8,7 +8,7 @@ public class Card
     public string Description => data.Description;
     public Sprite Image =>data.Image;
     public List<Effect> Effects => data.Effects;
-    public int PlayCost { get; private set; }
+    public int PlayMana { get; private set; }
 
     private readonly CardData data;
 
@@ -17,6 +17,6 @@ public class Card
     public Card(CardData cardData)
     {
         data = cardData;
-        PlayCost = data.PlayCost;
+        PlayMana = data.PlayMana;
     }
 }

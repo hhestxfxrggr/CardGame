@@ -5,7 +5,7 @@ public class CardView : MonoBehaviour
 {
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
-    [SerializeField] private TMP_Text playCost;
+    [SerializeField] private TMP_Text playMana;
     [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
     [SerializeField] private LayerMask dropLayer;
@@ -18,7 +18,7 @@ public class CardView : MonoBehaviour
         Card = card;
         title.text = card.Title;
         description.text = card.Description;
-        playCost.text = card.PlayCost.ToString();
+        playMana.text = card.PlayMana.ToString();
         imageSR.sprite = card.Image;
     }
 
@@ -67,10 +67,11 @@ public class CardView : MonoBehaviour
     {
         if (!Interaction.Instance.PlayerCanInteract())
             return;
-        if (Physics.Raycast(transform.position, Vector3.forward, out RaycastHit hit, 10f, dropLayer))
+        if (!ManaSystem.Instance.HasEnuoghMana(Card.PlayMana) 
+            && Physics.Raycast(transform.position, Vector3.forward, out RaycastHit hit, 10f, dropLayer))
         {
             PlayCardGA playCardGA = new(Card);
-            ActionSystem.Instance.Perform(playCardGA    );
+            ActionSystem.Instance.Perform(playCardGA);
         }
         else
         {
