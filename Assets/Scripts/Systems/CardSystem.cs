@@ -58,7 +58,8 @@ public class CardSystem : MonoBehaviour
 
             for (int i = 0; i < notDrawAmount; i++)
             {
-                yield return DrawCard();
+                if(drawPile.Count >0)
+                    yield return DrawCard();
             }
         }
     }
@@ -79,6 +80,7 @@ public class CardSystem : MonoBehaviour
     {
         hand.Remove(playCardGA.Card);
         CardView cardView = handView.RemoveCard(playCardGA.Card);
+        disCardPile.Add(playCardGA.Card);
 
         yield return DiscardCard(cardView);
 

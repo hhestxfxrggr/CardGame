@@ -207,17 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2655ad8783b1a3e4a9689b7caed75298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatchSetupSystem
-  deckData:
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
-  - {fileID: 11400000, guid: 50f3fafb04ca8b14caa17cb1e1a1d9a7, type: 2}
+  heroData: {fileID: 11400000, guid: 770037adff7f36c4fa25a80816134593, type: 2}
   cardSystem: {fileID: 665783450}
 --- !u!1 &349118987
 GameObject:
@@ -256,6 +246,7 @@ Transform:
   - {fileID: 1267921087}
   - {fileID: 1179385664}
   - {fileID: 693254012}
+  - {fileID: 535281238}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &402884582
@@ -654,6 +645,51 @@ Transform:
   - {fileID: 1081161495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &535281237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535281238}
+  - component: {fileID: 535281239}
+  m_Layer: 0
+  m_Name: HeroSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &535281238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535281237}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 349118988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &535281239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535281237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb66ccab41eae447aa39188e6038498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeroSystem
+  <HeroView>k__BackingField: {fileID: 8694560964039604001}
 --- !u!4 &556288450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2661107445398893397, guid: e42966d1b2c07a142975d55c512ad85a, type: 3}
@@ -2174,6 +2210,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e42966d1b2c07a142975d55c512ad85a, type: 3}
+--- !u!114 &8694560964039604001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8723383903305625020, guid: e42966d1b2c07a142975d55c512ad85a, type: 3}
+  m_PrefabInstance: {fileID: 8694560964039604000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58780920a36330a4292576606282fdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeroView
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

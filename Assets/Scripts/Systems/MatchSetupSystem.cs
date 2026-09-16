@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class MatchSetupSystem : MonoBehaviour
 {
-    [SerializeField] private List<CardData> deckData;
+    [SerializeField] private HeroData heroData;
     [SerializeField] private CardSystem cardSystem;
     private void Start()
     {
-        cardSystem.Setup(deckData);
+        HeroSystem.Instance.Setup(heroData);
+        cardSystem.Setup(heroData.Deck);
 
         RefillManaGA refillManaGA = new();
 
