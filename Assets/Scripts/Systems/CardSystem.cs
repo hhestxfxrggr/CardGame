@@ -58,7 +58,7 @@ public class CardSystem : MonoBehaviour
 
             for (int i = 0; i < notDrawAmount; i++)
             {
-                if(drawPile.Count >0)
+                if (drawPile.Count > 0)
                     yield return DrawCard();
             }
         }
@@ -87,9 +87,10 @@ public class CardSystem : MonoBehaviour
         SpendManaGA spendManaGA = new SpendManaGA(playCardGA.Card.PlayMana);
         ActionSystem.Instance.AddReaction(spendManaGA);
 
-        foreach(var effect in playCardGA.Card.Effects)
+        foreach(var effectWrapper in playCardGA.Card.OtherEffects)
         {
-            PerformEffectGA performEffectGA = new PerformEffectGA(effect);
+            List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
+            PerformEffectGA performEffectGA = new PerformEffectGA(effectWrapper.Effect, targets);
             ActionSystem.Instance.AddReaction(performEffectGA);
         }
     }
