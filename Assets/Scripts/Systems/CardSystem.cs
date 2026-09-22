@@ -86,6 +86,12 @@ public class CardSystem : MonoBehaviour
 
         SpendManaGA spendManaGA = new SpendManaGA(playCardGA.Card.PlayMana);
         ActionSystem.Instance.AddReaction(spendManaGA);
+        
+        if(playCardGA.Card.ManualTargetEffect != null)
+        {
+            PerformEffectGA performEffectGA = new PerformEffectGA(playCardGA.Card.ManualTargetEffect, new() { playCardGA.ManualTarget });
+            ActionSystem.Instance.AddReaction(performEffectGA);
+        }
 
         foreach(var effectWrapper in playCardGA.Card.OtherEffects)
         {
