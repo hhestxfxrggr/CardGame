@@ -15,6 +15,6 @@ public class OnEnemyAttackCondition : PerkCondition
 
     public override void UnsubscribeCondition(Action<GameAction> reaction)
     {
-        throw new NotImplementedException();
+        ActionSystem.UnsubscribeReaction<AttackHeroGA>(reaction, reactionTiming);
     }
 }
