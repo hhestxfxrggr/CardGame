@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyView
   healthText: {fileID: 8505780904228100665}
   spriteRenderer: {fileID: 4978767520884581195}
+  statusEffectsUI: {fileID: 610541881438588447}
   attackText: {fileID: 5522338592552606640}
 --- !u!65 &2558822871281781789
 BoxCollider:
@@ -330,6 +331,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6752510337142150189, guid: fafc343daa48c4b4c880adc704528c1a, type: 3}
   m_PrefabInstance: {fileID: 6815674661325822555}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &610541881438588447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6264286515494491204, guid: fafc343daa48c4b4c880adc704528c1a, type: 3}
+  m_PrefabInstance: {fileID: 6815674661325822555}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c62342779e212448ce5de636fc5349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectsUI
 --- !u!212 &4978767520884581195 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1985525929520609552, guid: fafc343daa48c4b4c880adc704528c1a, type: 3}
