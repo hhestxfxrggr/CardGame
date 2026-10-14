@@ -31,16 +31,19 @@ public class CombatantView : MonoBehaviour
         int reamainingDamge = damageAmount;
         int currentArmor = GetStatusEffectStacks(StatusEffectType.ARMOR);
 
+        if (currentArmor > 0)
+        {
+            if (currentArmor >= reamainingDamge)
+            {
+                RemoveStatusEffect(StatusEffectType.ARMOR, reamainingDamge);
+                reamainingDamge = 0;
+            }
+            else if (currentArmor < reamainingDamge)
+            {
+                RemoveStatusEffect(StatusEffectType.ARMOR, currentArmor);
+                reamainingDamge -= currentArmor;
+            }
 
-        if (currentArmor >= reamainingDamge)
-        {
-            RemoveStatusEffect(StatusEffectType.ARMOR, reamainingDamge);
-            reamainingDamge = 0;
-        }
-        else if (currentArmor < reamainingDamge)
-        {
-            RemoveStatusEffect(StatusEffectType.ARMOR, currentArmor);
-            reamainingDamge -= currentArmor;
         }
 
         if (reamainingDamge > 0)
