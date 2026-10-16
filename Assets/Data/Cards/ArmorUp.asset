@@ -15,8 +15,7 @@ MonoBehaviour:
   <Description>k__BackingField: Add 5 Armor
   <PlayMana>k__BackingField: 1
   <Image>k__BackingField: {fileID: 21300000, guid: c5bb51903ffa6114089a0f30a8067f53, type: 3}
-  <ManualTargetEffect>k__BackingField:
-    rid: -2
+  <ManualTargetEffects>k__BackingField: []
   <OtherEffects>k__BackingField:
   - <TargetMode>k__BackingField:
       rid: 3654182089888890987

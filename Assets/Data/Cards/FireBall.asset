@@ -15,8 +15,8 @@ MonoBehaviour:
   <Description>k__BackingField: 'Deal 4 damage to an enemy '
   <PlayMana>k__BackingField: 1
   <Image>k__BackingField: {fileID: 21300000, guid: 298475d310cd62e438e70eaa998ee507, type: 3}
-  <ManualTargetEffect>k__BackingField:
-    rid: 6393481399862558822
+  <ManualTargetEffects>k__BackingField:
+  - rid: 6393481399862558822
   <OtherEffects>k__BackingField: []
   references:
     version: 2

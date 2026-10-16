@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//¿øº»Àº ½Ì±ÛÅæÀ¸·Î ¼±¾ğ
+//Å¼Å™ÅŸÅ¥Å”ÅŸ ËÄšÄ…Å°Ä¹Ä‡Å”Â¸Ë‡Ã ÅºÄ…Å¾Ä‘
 public class CardSystem : MonoBehaviour
 {
     [SerializeField] private HandView handView;
@@ -83,10 +83,16 @@ public class CardSystem : MonoBehaviour
         SpendManaGA spendManaGA = new SpendManaGA(playCardGA.Card.PlayMana);
         ActionSystem.Instance.AddReaction(spendManaGA);
         
-        if(playCardGA.Card.ManualTargetEffect != null)
+        if (playCardGA.Card.RequiresManualTarget)
         {
-            PerformEffectGA performEffectGA = new PerformEffectGA(playCardGA.Card.ManualTargetEffect, new() { playCardGA.ManualTarget });
-            ActionSystem.Instance.AddReaction(performEffectGA);
+            foreach (Effect effect in playCardGA.Card.ManualTargetEffects)
+            {
+                if (effect == null)
+                    continue;
+
+                PerformEffectGA performEffectGA = new PerformEffectGA(effect, new() { playCardGA.ManualTarget });
+                ActionSystem.Instance.AddReaction(performEffectGA);
+            }
         }
 
         foreach(var effectWrapper in playCardGA.Card.OtherEffects)
