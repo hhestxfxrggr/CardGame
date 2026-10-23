@@ -9,6 +9,6 @@ public class CardData : ScriptableObject
     [field: SerializeField] public int PlayMana { get; private set; }
     [field: SerializeField] public Sprite Image { get; private set; }
 
-    [field: SerializeReference, SR] public Effect ManualTargetEffect { get; private set; } = null;
+    [field: SerializeReference, SR] public List<Effect> ManualTargetEffects { get; private set; } = new();
     [field: SerializeField] public List<AutoTargetEffect> OtherEffects { get; private set; }
 }

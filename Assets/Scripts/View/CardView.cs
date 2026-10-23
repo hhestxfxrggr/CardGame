@@ -20,6 +20,26 @@ public class CardView : MonoBehaviour
         description.text = card.Description;
         playMana.text = card.PlayMana.ToString();
         imageSR.sprite = card.Image;
+
+        // 이전 호버·드래그 상태 초기화
+        wrapper.SetActive(true);
+        dragStartPosition = Vector3.zero;
+        dragStartRotation = Quaternion.identity;
+    }
+
+    public void ResetForPool()
+    {
+        // 이전 카드 데이터 참조 해제
+        Card = null;
+
+        title.text = string.Empty;
+        description.text = string.Empty;
+        playMana.text = string.Empty;
+        imageSR.sprite = null;
+
+        wrapper.SetActive(true);
+        dragStartPosition = Vector3.zero;
+        dragStartRotation = Quaternion.identity;
     }
 
     private void OnMouseEnter()
@@ -45,7 +65,7 @@ public class CardView : MonoBehaviour
         if (!Interaction.Instance.PlayerCanInteract())
             return;
 
-        if (Card.ManualTargetEffect != null)
+        if (Card.RequiresManualTarget)
         {
             ManualTargetingSystem.Instance.StartTargeting(transform.position);
         }
@@ -70,7 +90,7 @@ public class CardView : MonoBehaviour
         if (!Interaction.Instance.PlayerCanInteract())
             return;
 
-        if (Card.ManualTargetEffect != null)
+        if (Card.RequiresManualTarget)
             return;
 
         transform.position = MouseUtil.GetMousePositionInWorldSpace(-1f);
@@ -82,7 +102,7 @@ public class CardView : MonoBehaviour
         if (!Interaction.Instance.PlayerCanInteract())
             return;
 
-        if (Card.ManualTargetEffect != null)
+        if (Card.RequiresManualTarget)
         {
             EnemyView target = ManualTargetingSystem.Instance.EndTargeting(MouseUtil.GetMousePositionInWorldSpace(-1));
             if (target != null && ManaSystem.Instance.HasEnuoghMana(Card.PlayMana))
