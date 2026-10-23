@@ -175,8 +175,7 @@ public class CardSystem : MonoBehaviour
 
             if (cardView != null)
             {
-                cardView.transform.DOKill();
-                Destroy(cardView.gameObject);
+                cardViewCreator.ReturnCardView(cardView);
             }
 
             return true;
