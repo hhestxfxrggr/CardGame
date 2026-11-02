@@ -20,16 +20,15 @@ MonoBehaviour:
   - <TargetMode>k__BackingField:
       rid: 3654182275712811086
     <Effect>k__BackingField:
-      rid: 3654182275712811087
+      rid: 3654182519463215192
   references:
     version: 2
     RefIds:
     - rid: 3654182275712811086
       type: {class: NoTM, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 3654182275712811087
-      type: {class: CreateCombatCardEffect, ns: , asm: Assembly-CSharp}
+    - rid: 3654182519463215192
+      type: {class: RemoveCombatCardEffect, ns: , asm: Assembly-CSharp}
       data:
-        cardData: {fileID: 11400000, guid: efeae416aadfc3842ba6046086cbad86, type: 2}
-        destination: 1
+        source: 1
         amount: 1

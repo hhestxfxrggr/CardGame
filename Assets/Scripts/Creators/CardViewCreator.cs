@@ -19,13 +19,11 @@ public class CardViewCreator : MonoBehaviour
         if (pool.Count > 0)
         {
             cardView = pool.Dequeue();
-            Debug.Log($"[풀 재사용] ID: {cardView.GetInstanceID()}");
         }
         else
         {
             cardView = Instantiate(cardViewPrefab);
             allViews.Add(cardView);
-            Debug.Log($"[새로 생성] ID: {cardView.GetInstanceID()}");
         }
 
         activeViews.Add(cardView);
@@ -62,7 +60,6 @@ public class CardViewCreator : MonoBehaviour
         cardView.transform.SetParent(transform, false);
 
         pool.Enqueue(cardView);
-        Debug.Log($"[풀 반환] ID: {cardView.GetInstanceID()}, 대기 수: {pool.Count}");
     }
 
     private void OnDestroy()

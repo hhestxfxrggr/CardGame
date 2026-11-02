@@ -26,6 +26,17 @@ public class HandView : MonoBehaviour
         return cardView;
     }
 
+    //초괴화용 함수
+    public void ClearCards(CardViewCreator cardViewCreator)
+    {
+        foreach (CardView cardView in cards)
+        {
+            cardViewCreator.ReturnCardView(cardView);
+        }
+
+        cards.Clear();
+    }
+
     private CardView GetCardView(Card card)
     {
         return cards.Where(cardView => cardView.Card == card).FirstOrDefault();

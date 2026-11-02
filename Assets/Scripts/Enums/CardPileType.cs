@@ -2,5 +2,6 @@ public enum CardPileType
 {
     Draw,
     Hand,
-    Discard
+    Discard,
+    Removed
 }

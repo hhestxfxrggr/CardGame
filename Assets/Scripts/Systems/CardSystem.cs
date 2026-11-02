@@ -14,6 +14,8 @@ public class CardSystem : MonoBehaviour
     private readonly List<Card> drawPile = new();
     private readonly List<Card> disCardPile = new();
     private readonly List<Card> hand = new();
+    private readonly List<Card> removedPile = new();
+    public event System.Action OnCardsChanged;
 
     private void OnEnable()
     {
@@ -34,8 +36,10 @@ public class CardSystem : MonoBehaviour
 
     }
 
-    public void Setup(List<CardData> deckData)
+    public void Setup(IReadOnlyList<CardData> deckData)
     {
+        ClearCombatCards();
+
         foreach (var cardData in deckData)
         {
             Card card = new(cardData);
@@ -73,6 +77,8 @@ public class CardSystem : MonoBehaviour
             disCardPile.Add(card);
             CardView cardView = handView.RemoveCard(card);
             yield return DiscardCard(cardView);
+
+            OnCardsChanged?.Invoke();
         }
 
         hand.Clear();
@@ -107,6 +113,8 @@ public class CardSystem : MonoBehaviour
             PerformEffectGA performEffectGA = new PerformEffectGA(effectWrapper.Effect, targets);
             ActionSystem.Instance.AddReaction(performEffectGA);
         }
+
+        OnCardsChanged?.Invoke();
     }
 
     private IEnumerator CreateCombatCardPerformer(CreateCombatCardGA createCombatCardGA)
@@ -142,7 +150,6 @@ public class CardSystem : MonoBehaviour
         if (cardData == null)
             yield break;
 
-        // 기존 카드와 별개인 전투용 카드 한 장 생성
         Card card = new(cardData);
 
         switch (destination)
@@ -178,14 +185,24 @@ public class CardSystem : MonoBehaviour
                 cardViewCreator.ReturnCardView(cardView);
             }
 
+            removedPile.Add(card);
+            OnCardsChanged?.Invoke();
             return true;
         }
 
         if (drawPile.Remove(card))
+        {
+            removedPile.Add(card);
+            OnCardsChanged?.Invoke();
             return true;
+        }
 
         if (disCardPile.Remove(card))
+        {
+            removedPile.Add(card);
+            OnCardsChanged?.Invoke();
             return true;
+        }
 
         return false;
     }
@@ -201,11 +218,33 @@ public class CardSystem : MonoBehaviour
         };
     }
 
+    public IReadOnlyList<Card> GetCards(CardPileType pileType)
+    {
+        switch (pileType)
+        {
+            case CardPileType.Draw:
+                return drawPile.AsReadOnly();
+
+            case CardPileType.Hand:
+                return hand.AsReadOnly();
+
+            case CardPileType.Discard:
+                return disCardPile.AsReadOnly();
+
+            case CardPileType.Removed:
+                return removedPile.AsReadOnly();
+
+            default:
+                return null;
+        }
+    }
+
     private IEnumerator DrawCard()
     {
         Card card = drawPile.Draw();
         hand.Add(card);
         CardView cardView = cardViewCreator.CreatCardView(card, drawPilePoint.position, drawPilePoint.rotation);
+        OnCardsChanged?.Invoke();
         yield return handView.AddCard(cardView);
     }
 
@@ -213,6 +252,7 @@ public class CardSystem : MonoBehaviour
     {
         drawPile.AddRange(disCardPile);
         disCardPile.Clear();
+        OnCardsChanged?.Invoke();
     }
 
     private IEnumerator DiscardCard(CardView cardView)
@@ -235,5 +275,17 @@ public class CardSystem : MonoBehaviour
 
         // Destroy 대신 풀에 반환
         cardViewCreator.ReturnCardView(cardView);
+    }
+
+    public void ClearCombatCards()
+    {
+        handView.ClearCards(cardViewCreator);
+
+        drawPile.Clear();
+        hand.Clear();
+        disCardPile.Clear();
+        removedPile.Clear();
+
+        OnCardsChanged?.Invoke();
     }
 }

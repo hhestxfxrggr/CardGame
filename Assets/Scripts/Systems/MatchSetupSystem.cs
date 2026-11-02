@@ -4,6 +4,7 @@ using UnityEngine;
 public class MatchSetupSystem : MonoBehaviour
 {
     [SerializeField] private CardSystem cardSystem;
+    [SerializeField] private DeckSystem deckSystem;
     [SerializeField] private HeroData heroData;
     [SerializeField] private PerkData perkData;
     [SerializeField] private List<EnemyData> enemyDatas;
@@ -11,7 +12,8 @@ public class MatchSetupSystem : MonoBehaviour
     {
         HeroSystem.Instance.Setup(heroData);
         EnemySystem.Instance.Setup(enemyDatas);
-        cardSystem.Setup(heroData.Deck);
+        deckSystem.Setup(heroData.Deck);
+        cardSystem.Setup(deckSystem.OriginalDeck);
         PerkSystem.Instance.AddPerk(new Perk(perkData));
 
 
