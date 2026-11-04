@@ -12,7 +12,7 @@ public class ActionSystem : Singleton<ActionSystem>
     private static Dictionary<Type, List<Action<GameAction>>> preSubs = new();
     private static Dictionary<Type, List<Action<GameAction>>> postSubs = new();
     private static Dictionary<Type, Func<GameAction, IEnumerator>> performers = new();
-
+    private static Dictionary<(Type type, ReactionTiming timing, Delegate reaction), Action<GameAction>> wrappedDelegates = new();
 
     public void Perform(GameAction action, System.Action OnPerformFinished = null)
     {
@@ -69,7 +69,7 @@ public class ActionSystem : Singleton<ActionSystem>
     private void PerformSubscribers(GameAction action, Dictionary<Type, List<Action<GameAction>>> subs)
     {
         Type type = action.GetType();
-        
+
         if (subs.ContainsKey(type))
         {
             foreach (var sub in subs[type])
@@ -113,30 +113,38 @@ public class ActionSystem : Singleton<ActionSystem>
     //action이 발생했을 때 추가로 반응하는 효과를 저장
     public static void SubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction
     {
-        Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
+        var subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
+        var key = (typeof(T), timing, (Delegate)reaction);
 
-        void wrappedReaction(GameAction action) => reaction((T)action);
+        if (wrappedDelegates.ContainsKey(key))
+            return;
 
-        if (subs.ContainsKey(typeof(T)))
+        Action<GameAction> wrappedReaction = action => reaction((T)action);
+
+        if (!subs.TryGetValue(typeof(T), out var list))
         {
-            subs[typeof(T)].Add(wrappedReaction);
+            list = new List<Action<GameAction>>();
+            subs.Add(typeof(T), list);
         }
-        else
-        {
-            subs.Add(typeof(T), new());
-            subs[typeof(T)].Add(wrappedReaction);
-        }
+
+        list.Add(wrappedReaction);
+        wrappedDelegates.Add(key, wrappedReaction);
     }
 
 
     public static void UnsubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction
     {
-        Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
+        var subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
+        var key = (typeof(T), timing, (Delegate)reaction);
 
-        if (subs.ContainsKey(typeof(T)))
+        if (!wrappedDelegates.TryGetValue(key, out var wrappedReaction))
+            return;
+
+        if (subs.TryGetValue(typeof(T), out var list))
         {
-            void wrappedReaction(GameAction action) => reaction((T)action);
-            subs[typeof(T)].Remove(wrappedReaction);
+            list.Remove(wrappedReaction);
         }
+
+        wrappedDelegates.Remove(key);
     }
 }
