@@ -10,10 +10,10 @@ public class CardsUI : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private Transform contentRoot;
     [SerializeField] private CardUI cardUIPrefab;
-
+    
     private readonly List<CardUI> cardUIs = new();
     private readonly Queue<CardUI> pool = new();
-
+  
     public void OpenOriginalDeck()
     {
         panel.SetActive(true);
@@ -95,4 +95,5 @@ public class CardsUI : MonoBehaviour
 
         cardUIs.Clear();
     }
+
 }

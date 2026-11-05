@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class Interaction : Singleton<Interaction>
 {
+    [SerializeField] private GameObject cardsPanel;
     public bool PlayerIsDragging {  get; set; } = false;
     public bool PlayerCanInteract()
     {
-        if(!ActionSystem.Instance.IsPerforming) return true;
-        else return false;
+        return !cardsPanel.activeInHierarchy && !ActionSystem.Instance.IsPerforming;
     }
 
     public bool PlayerCanHover()
     {
-        if(PlayerIsDragging) return false; 
-        else return true;
+        return !cardsPanel.activeInHierarchy && !PlayerIsDragging;
     }
 }

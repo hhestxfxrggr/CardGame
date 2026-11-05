@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,4 +27,5 @@ public class CardUI : MonoBehaviour
         playMana.text = card.PlayMana.ToString();
         image.sprite = card.Image;
     }
+
 }
