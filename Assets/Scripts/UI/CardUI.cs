@@ -9,8 +9,8 @@ public class CardUI : MonoBehaviour
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text playMana;
     [SerializeField] private Image image;
+    [field: SerializeField] public Button Button { get; private set; }
 
-    // 원본 덱의 카드 표시
     public void Setup(CardData cardData)
     {
         title.text = cardData.name;

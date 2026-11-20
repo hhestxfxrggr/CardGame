@@ -15,3 +15,12 @@ MonoBehaviour:
   <Image>k__BackingField: {fileID: 21300000, guid: b681ac4db2f21ef40bbe7c75639ee4d9, type: 3}
   <Health>k__BackingField: 15
   <AttackPower>k__BackingField: 4
+  <ItemDrops>k__BackingField:
+  - Item: {fileID: 11400000, guid: 2fe8bdee159340245928b87524c8f99b, type: 2}
+    Chance: 100
+  <SoulDropChance>k__BackingField: 10
+  <SoulDrops>k__BackingField:
+  - Soul: {fileID: 11400000, guid: 03fcbc8591283ba49a1cdc4afc32f0f2, type: 2}
+    Weight: 30
+  - Soul: {fileID: 11400000, guid: 855e5c8d414028d419fad130ac1b9c36, type: 2}
+    Weight: 30

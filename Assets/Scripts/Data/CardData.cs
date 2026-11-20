@@ -5,10 +5,12 @@ using SerializeReferenceEditor;
 [CreateAssetMenu(menuName = "Data/Card")]
 public class CardData : ScriptableObject
 {
+    [field: SerializeField] public string Title { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
     [field: SerializeField] public int PlayMana { get; private set; }
     [field: SerializeField] public Sprite Image { get; private set; }
-
+    [field: SerializeField] public CardRarity Rarity { get; private set; }
+    [field: SerializeField, Min(1)] public int RewardWeight { get; private set; } = 1;
     [field: SerializeReference, SR] public List<Effect> ManualTargetEffects { get; private set; } = new();
     [field: SerializeField] public List<AutoTargetEffect> OtherEffects { get; private set; }
 }

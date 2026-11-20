@@ -509,19 +509,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4251563386179909772}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9008960879754815004}
-        m_TargetAssemblyTypeName: CardUI, Assembly-CSharp
-        m_MethodName: print
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6152203223080674408
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +563,7 @@ MonoBehaviour:
   description: {fileID: 466168150864408943}
   playMana: {fileID: 4438536528106417170}
   image: {fileID: 1049473355525117564}
+  <Button>k__BackingField: {fileID: 7015526788236131890}
 --- !u!1 &8056220729257445084
 GameObject:
   m_ObjectHideFlags: 0

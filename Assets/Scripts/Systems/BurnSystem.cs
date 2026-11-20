@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BurnSystem : MonoBehaviour
@@ -18,9 +19,17 @@ public class BurnSystem : MonoBehaviour
     private IEnumerator ApplyBurnGAPerformer(ApplyBurnGA applyBurnGA)
     {
         CombatantView target = applyBurnGA.Target;
+
+        if (target == null || target.CurrentHealth <= 0)
+            yield break;
+
         Instantiate(burnVFX, target.transform.position, Quaternion.identity);
-        target.Damage(applyBurnGA.BurnDamage);
+        
+        DealDamageGA dealDamageGA = new(applyBurnGA.BurnDamage, new List<CombatantView> { target }, null);
+        ActionSystem.Instance.AddReaction(dealDamageGA);
+
         target.RemoveStatusEffect(StatusEffectType.BURN, 1);
-        yield return new WaitForSeconds(1f);
+
+        yield return null;
     }
 }

@@ -8,6 +8,9 @@ public class MatchSetupSystem : MonoBehaviour
     [SerializeField] private HeroData heroData;
     [SerializeField] private PerkData perkData;
     [SerializeField] private List<EnemyData> enemyDatas;
+
+    public IReadOnlyList<EnemyData> EnemyDatas => enemyDatas;
+    
     private void Start()
     {
         HeroSystem.Instance.Setup(heroData);

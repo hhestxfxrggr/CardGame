@@ -9,5 +9,8 @@ public abstract class GameAction
     public List<GameAction> PerformReactions { get; private set; } = new();
     //행동 후
     public List<GameAction> PostReactions { get; private set; } = new();
+    
+    //행동 조건 등록
+    public virtual bool CanExecute => true;
 
 }

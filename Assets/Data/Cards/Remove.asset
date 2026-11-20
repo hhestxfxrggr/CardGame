@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d2e3e7110a3124898526e39b3e6f50, type: 3}
   m_Name: Remove
   m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Title>k__BackingField: Remove
   <Description>k__BackingField: Remove one card in hands
   <PlayMana>k__BackingField: 0
   <Image>k__BackingField: {fileID: 21300000, guid: 32c3dfb0c4ab00d49b8c0ad2ce3398e0, type: 3}
+  <Rarity>k__BackingField: 0
+  <RewardWeight>k__BackingField: 1
   <ManualTargetEffects>k__BackingField: []
   <OtherEffects>k__BackingField:
   - <TargetMode>k__BackingField:

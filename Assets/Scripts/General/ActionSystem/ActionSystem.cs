@@ -36,10 +36,22 @@ public class ActionSystem : Singleton<ActionSystem>
 
     private IEnumerator Flow(GameAction action, Action OnFlowFinished = null)
     {
+        if (!action.CanExecute)
+        {
+            OnFlowFinished?.Invoke();
+            yield break;
+        }
+
         // PRE
         reactions = action.PreReactions;
         PerformSubscribers(action, preSubs);
         yield return PerformReactions();
+
+        if (!action.CanExecute)
+        {
+            OnFlowFinished?.Invoke();
+            yield break;
+        }
 
         // PERFORM
         reactions = action.PerformReactions;

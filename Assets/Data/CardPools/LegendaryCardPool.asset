@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ef3cf8aa228c84c818119d0fe0157e, type: 3}
+  m_Name: LegendaryCardPool
+  m_EditorClassIdentifier: Assembly-CSharp::CardPoolData
+  <Cards>k__BackingField:
+  - {fileID: 11400000, guid: 1e86851b181be6d4598f21040bcd92e6, type: 2}
+  - {fileID: 11400000, guid: 2f63b0875e859e547b5225018aaf9ef4, type: 2}
+  - {fileID: 11400000, guid: efeae416aadfc3842ba6046086cbad86, type: 2}

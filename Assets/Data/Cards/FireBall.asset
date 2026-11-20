@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d2e3e7110a3124898526e39b3e6f50, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Title>k__BackingField: FireBall
   <Description>k__BackingField: 'Deal 4 damage to an enemy '
   <PlayMana>k__BackingField: 1
   <Image>k__BackingField: {fileID: 21300000, guid: 298475d310cd62e438e70eaa998ee507, type: 3}
+  <Rarity>k__BackingField: 0
+  <RewardWeight>k__BackingField: 1
   <ManualTargetEffects>k__BackingField:
   - rid: 3654182179600334927
   <OtherEffects>k__BackingField: []
