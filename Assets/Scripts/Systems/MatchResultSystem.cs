@@ -4,6 +4,8 @@ using System;
 public class MatchResultSystem : MonoBehaviour
 {
     [SerializeField] private EnemySystem enemySystem;
+    [SerializeField] private CardSystem cardSystem;
+    [SerializeField] private GameObject[] combatUIObjects;
 
     public bool IsVictory { get; private set; }
     public event Action OnVictory;
@@ -24,6 +26,14 @@ public class MatchResultSystem : MonoBehaviour
             return;
 
         IsVictory = true;
+
+        cardSystem.ClearCombatCards();
+
+        foreach (GameObject combatUI in combatUIObjects)
+        {
+            combatUI.SetActive(false);
+        }
+
         OnVictory?.Invoke();
     }
 }

@@ -7,7 +7,7 @@ public class RewardSystem : MonoBehaviour
     [SerializeField] private MatchSetupSystem matchSetupSystem;
     [SerializeField] private RewardGenerator rewardGenerator;
     [SerializeField] private DeckSystem deckSystem;
-
+    [SerializeField] private GoldSystem goldSystem;
     public Reward CurrentReward { get; private set; }
 
     public event Action<Reward> OnRewardGenerated;
@@ -53,6 +53,26 @@ public class RewardSystem : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool TryClaimGold()
+    {
+        if (CurrentReward == null || CurrentReward.Gold <= 0)
+            return false;
+
+        int amount = CurrentReward.Gold;
+
+        if (!goldSystem.TryAddGold(amount))
+            return false;
+
+        CurrentReward.ClearGold();
+
+        OnRewardChanged?.Invoke();
+
+        Debug.Log($"È¹µæÇÑ °ñµå: {amount}");
+        Debug.Log($"ÇöÀç º¸À¯ °ñµå: {goldSystem.CurrentGold}");
+
+        return true;
     }
 }
 

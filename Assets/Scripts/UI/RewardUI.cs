@@ -65,7 +65,7 @@ public class RewardUI : MonoBehaviour
         ClearRewardSlots();
 
         if (reward.Gold > 0)
-            CreateRewardSlot($"{reward.Gold} ∞ÒµÂ", goldIcon, null);
+            CreateRewardSlot($"{reward.Gold} ∞ÒµÂ", goldIcon, () => rewardSystem.TryClaimGold());
 
         // æ∆¿Ã≈€
         foreach (ItemData item in reward.Items)

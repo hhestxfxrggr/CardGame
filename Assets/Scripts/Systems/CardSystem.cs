@@ -6,6 +6,7 @@ using UnityEngine;
 //¿øº»Àº ½Ì±ÛÅæÀ¸·Î ¼±¾ð
 public class CardSystem : MonoBehaviour
 {
+    [SerializeField] private MatchResultSystem matchResultSystem;
     [SerializeField] private HandView handView;
     [SerializeField] private CardViewCreator cardViewCreator;
     [SerializeField] private Transform drawPilePoint;
@@ -147,7 +148,7 @@ public class CardSystem : MonoBehaviour
 
     public IEnumerator CreateCombatCard(CardData cardData, CardPileType destination)
     {
-        if (cardData == null)
+        if (cardData == null || matchResultSystem.IsVictory)
             yield break;
 
         Card card = new(cardData);
