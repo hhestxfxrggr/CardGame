@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 public class Reward
 {
     public int Gold { get; private set; }
 
     private readonly List<CardData> cards;
-    private readonly List<ItemData> items;
+    private readonly Dictionary<ItemData, int> items;
     private readonly List<SoulData> souls;
 
     public IReadOnlyList<CardData> Cards { get; }
-    public IReadOnlyList<ItemData> Items { get; }
+    public IReadOnlyDictionary<ItemData, int> Items { get; }
     public IReadOnlyList<SoulData> Souls { get; }
 
     public bool IsEmpty => Gold == 0 && cards.Count == 0 && items.Count == 0 && souls.Count == 0;
@@ -19,11 +20,22 @@ public class Reward
         Gold = gold;
 
         this.cards = new List<CardData>(cards);
-        this.items = new List<ItemData>(items);
+        this.items = new Dictionary<ItemData, int>();
         this.souls = new List<SoulData>(souls);
 
+        foreach (ItemData item in items)
+        {
+            if (item == null)
+                continue;
+
+            if (this.items.ContainsKey(item))
+                this.items[item]++;
+            else
+                this.items.Add(item, 1);
+        }
+
         Cards = this.cards.AsReadOnly();
-        Items = this.items.AsReadOnly();
+        Items = new ReadOnlyDictionary<ItemData, int>(this.items);
         Souls = this.souls.AsReadOnly();
     }
 

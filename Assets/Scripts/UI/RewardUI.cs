@@ -68,12 +68,12 @@ public class RewardUI : MonoBehaviour
             CreateRewardSlot($"{reward.Gold} 골드", goldIcon, () => rewardSystem.TryClaimGold());
 
         // 아이템
-        foreach (ItemData item in reward.Items)
+        foreach (var pair in reward.Items)
         {
-            if (item == null)
-                continue;
+            ItemData item = pair.Key;
+            int count = pair.Value;
 
-            CreateRewardSlot(item.Name, item.Image, null);
+            CreateRewardSlot($"{item.Name} x{count}", item.Image, () => rewardSystem.TryClaimItem(item));
         }
 
         // 소울
@@ -82,7 +82,7 @@ public class RewardUI : MonoBehaviour
             if (soul == null)
                 continue;
 
-            CreateRewardSlot(soul.Name, soul.Image, null);
+            CreateRewardSlot(soul.Name, soul.Image, () => rewardSystem.TryClaimSoul(soul));
         }
 
         // 카드 보상

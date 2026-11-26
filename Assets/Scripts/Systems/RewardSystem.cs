@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class RewardSystem : MonoBehaviour
@@ -8,6 +9,8 @@ public class RewardSystem : MonoBehaviour
     [SerializeField] private RewardGenerator rewardGenerator;
     [SerializeField] private DeckSystem deckSystem;
     [SerializeField] private GoldSystem goldSystem;
+    [SerializeField] private InventorySystem inventorySystem;
+
     public Reward CurrentReward { get; private set; }
 
     public event Action<Reward> OnRewardGenerated;
@@ -71,6 +74,44 @@ public class RewardSystem : MonoBehaviour
 
         Debug.Log($"»πµÊ«— ∞ÒµÂ: {amount}");
         Debug.Log($"«ˆ¿Á ∫∏¿Ø ∞ÒµÂ: {goldSystem.CurrentGold}");
+
+        return true;
+    }
+
+    public bool TryClaimItem(ItemData item)
+    {
+        if (CurrentReward == null || item == null)
+            return false;
+
+        if (!CurrentReward.Items.TryGetValue(item, out int count))
+            return false;
+
+        if (!inventorySystem.TryAddItem(item, count))
+            return false;
+
+        CurrentReward.RemoveItem(item);
+
+        OnRewardChanged?.Invoke();
+
+        Debug.Log($"»πµÊ«— æ∆¿Ã≈€: {item.Name}, {count}");
+
+        return true;
+    }
+
+    public bool TryClaimSoul(SoulData soul)
+    {
+        if (CurrentReward == null || soul == null)
+            return false;
+
+        if (!CurrentReward.Souls.Contains(soul))
+            return false;
+
+        if (!inventorySystem.TryAddSoul(soul))
+            return false;
+
+        CurrentReward.RemoveSoul(soul);
+
+        OnRewardChanged?.Invoke();
 
         return true;
     }
