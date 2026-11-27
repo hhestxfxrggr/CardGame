@@ -113,6 +113,8 @@ public class RewardSystem : MonoBehaviour
 
         OnRewardChanged?.Invoke();
 
+        Debug.Log($"»πµÊ«— æ∆¿Ã≈€: {soul.Name}");
+
         return true;
     }
 }

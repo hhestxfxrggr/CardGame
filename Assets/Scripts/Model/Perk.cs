@@ -29,6 +29,7 @@ public class Perk
         if(condition.SubConditionIsMet(action))
         {
             List<CombatantView> targets = new();
+
             if(data.UseActionCasterAsTarget && action is IHaveCaster haveCaster)
             {
                 targets.Add(haveCaster.Caster);

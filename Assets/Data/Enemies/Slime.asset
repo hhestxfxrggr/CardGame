@@ -18,7 +18,7 @@ MonoBehaviour:
   <ItemDrops>k__BackingField:
   - Item: {fileID: 11400000, guid: 2fe8bdee159340245928b87524c8f99b, type: 2}
     Chance: 100
-  <SoulDropChance>k__BackingField: 10
+  <SoulDropChance>k__BackingField: 100
   <SoulDrops>k__BackingField:
   - Soul: {fileID: 11400000, guid: 03fcbc8591283ba49a1cdc4afc32f0f2, type: 2}
     Weight: 30
